@@ -8,6 +8,8 @@
 </head>
 <body>
 	<?php 
+
+	echo "課題１ <br>";
 	// function にpublic入れるとダメやん・・・
 	 function prof()
 	{
@@ -20,6 +22,8 @@
 	prof();
 	prof();
 
+
+	echo "課題２ <br>";
 	function oddeven($value)
 	{
 		if($value%2==1){
@@ -31,6 +35,8 @@
 	oddeven(2);
 	echo "<br>";
 
+
+	echo "課題３ <br>";
 	function kadai3($i ,$value='5',$type=false)
 	{
 		if ($type===false) {
@@ -41,6 +47,9 @@
 		}
 	}
 	kadai3(3);
+
+
+	echo "課題４ <br>";
 	// if文の条件式で関数使うと関数が実行されるぽい？
 	if (prof()) {
 		echo "この処理は正しく実行できました<br>";
@@ -48,6 +57,9 @@
 	}else{
 		echo "正しく実行できませんでした<br>";
 	}
+
+
+	echo "課題５ <br>";
 function kadai5()
 	{
 		return $variable=array(
@@ -69,6 +81,8 @@ function kadai5()
 	echo "<br>";
 	var_dump(kadai5());
 	echo "<br>";
+
+	echo "課題６ <br>";
 function kadai6($id)
 	{
 		if ($id==1) {
@@ -117,6 +131,7 @@ function kadai6($id)
 
 $three =3;
 
+	echo "課題７ <br>";
 	function kadai7()
 	{
 		static $count; //式は代入できないんですう〜
