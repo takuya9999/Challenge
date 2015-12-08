@@ -1,0 +1,51 @@
+MAMP使用時のmysqlの設定について
+
+参照サイト：
+
+手順
+１：不可視フォルダの可視化
+	参考サイト：http://inforati.jp/apple/mac-tips-techniques/system-hints/how-to-show-hidden-file-or-folder-of-macos.html
+
+手順説明：macのアプリケーションからターミナルを立ち上げ以下を入力
+defaults write com.apple.finder AppleShowAllFiles -boolean true
+
+続いて以下を入力（Finderを再起動するコマンド）
+killall Finder
+
+これで不可視ファイルが確認できるようになる。
+
+なお、不可視ファイルを再び不可視にするには以下のコマンド入力を行う
+
+defaults delete com.apple.finder AppleShowAllFiles
+
+続いて以下を入力（Finderを再起動するコマンド）
+killall Finder
+
+これで不可視ファイルが元の不可視の状態に戻る。
+
+
+２：.bash_profileファイルの作成、パスの記述、ターミナルでmysqlへアクセス
+	参考サイト：http://webkaru.net/mysql/mamp-command-line/
+
+手順説明：ホームディレクトリを探し、.bash_profileファイルがあるか確認する
+なければ.bash_profileファイルを作成し、以下のパスを記述する
+
+export PATH=$PATH:/Applications/MAMP/Library/bin
+
+ターミナルで
+ mysql -u root -p
+とコマンド入力し、passを求められるのでrootと入力
+mysql>
+と表示されれば成功。
+
+
+
+
+
+３：ターミナルでのアクセス
+	参考サイト：http://dotinstall.com/lessons/basic_mysql_v2/7403
+
+			：http://dotinstall.com/lessons/basic_mysql_v2/7404
+
+	手順説明：
+
