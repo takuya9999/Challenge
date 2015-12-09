@@ -38,18 +38,15 @@ echo "課題２ <br>";
 switch ($kadai2) {
 	case 'A':
 	echo "英語";
-		# code...
 		break;
 
 	case 'あ':
 	echo "日本語";
-		# code...
 		break;
-
-	default:
-	echo '';
-		# code...
-		break;
+// caseに当てはまらない時、なにも返す必要がない時はdefault省略可
+	// default:
+	// echo '';
+	// 	break;
 }
 
 echo "<br>";

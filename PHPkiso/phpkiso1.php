@@ -60,7 +60,7 @@
 			echo $kadai6[$i]."はプログラミングキャンプ！<br>";
 			# code...
 		}
-		elseif ($kadai6[$i]==a) {
+		elseif ($kadai6[$i]=='a') {
 			echo $kadai6[$i]."は文字です！<br>";
 			# code...
 		}else{echo $kadai6[$i]."はその他です！<br>";}

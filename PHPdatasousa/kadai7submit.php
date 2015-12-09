@@ -13,11 +13,23 @@ $name =$_POST['name'];
 $seibetu = $_POST['seibetu'];
 $hobby =$_POST['hobby'];
 $profile = array("$name","$seibetu","$hobby");
-	# code...
+$male='';
+$female='';
+if ($seibetu=="男") {
+	$male ='checked';
+}else{
+	$female='checked';
+}
+
 
 
 // echo "hobby";
-setcookie('ProfData',$profile ,1000);
+// setcookieは文字列じゃないとダメらしい。配列を代入したからなにも入らない状況が起きてた
+
+setcookie('name',$name );
+setcookie('male',$male );
+setcookie('female',$female);
+setcookie('hobby',$hobby);
 echo "こんにちは！$nameさん！<br>";
 echo 'あなたのプロフィールは、 <br>';
 
@@ -41,6 +53,4 @@ foreach ($profile as $key => $value) {
 }
 
 echo "です!";
-
-
 	 ?>

@@ -8,14 +8,29 @@
 
 
 <?php 
-	if(isset($_COOKIE['ProfData'])) {
-		$lastDate =$COOKIE['ProfData'];
-		$name = $lastDate[0];
-		$seibetu =$lastDate[1];
-		$hobby = $lastDate[2];		
+	if(isset($_COOKIE['name'])) {
+		$name =$_COOKIE['name'];
 	}else{
-	$name = "あ";
-	$seibetu="";
+	$name = "";
+
+	}
+
+
+	if(isset($_COOKIE['female'])) {
+		$female =$_COOKIE['female'];
+	}else{
+		$female='';
+	}
+
+	if(isset($_COOKIE['male'])) {
+		$male =$_COOKIE['male'];
+	}else{
+		$male='';
+	}
+
+	if(isset($_COOKIE['hobby'])) {
+		$hobby =$_COOKIE['hobby'];
+	}else{
 	$hobby = "";
 	}
  ?>
@@ -29,9 +44,9 @@
 	
 	<p>
 		性別：
-		<input type="radio" name="seibetu" value="男" placeholder="">
+		<input type="radio" name="seibetu" value="男" checked="<?php echo "$male";?>" placeholder="">
 		男
-		<input type="radio" name="seibetu" value="女" placeholder="">
+		<input type="radio" name="seibetu" value="女" checked="<?php echo "$female";?>" placeholder="">
 		女</p>
 	
 	<p>

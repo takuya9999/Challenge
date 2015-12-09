@@ -43,6 +43,7 @@
 		echo $i*$value."<br>";
 			# code...
 		}else{
+			// ここ構文チェックするとエラー出るけど間違ってるのん？	
 		echo ($i*$value)**$type."<br>";
 		}
 	}

@@ -1,6 +1,5 @@
 MAMP使用時のmysqlの設定について
 
-参照サイト：
 
 手順
 １：不可視フォルダの可視化
@@ -44,8 +43,7 @@ mysql>
 
 ３：ターミナルでのアクセス
 	参考サイト：http://dotinstall.com/lessons/basic_mysql_v2/7403
-
-			：http://dotinstall.com/lessons/basic_mysql_v2/7404
+：http://dotinstall.com/lessons/basic_mysql_v2/7404
 
 	手順説明：
 

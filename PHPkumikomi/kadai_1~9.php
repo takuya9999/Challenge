@@ -28,9 +28,9 @@ date_default_timezone_set('Asia/Tokyo');
 	$kadai3 =mktime(10,0,0,11,4,2016);
 	echo date("Y年m月d日h時:i分:s秒",$kadai3);
 
-	echo "課題４ <br>";
+	echo "<br>課題４ <br>";
 	$kadai4 = mktime(23,59,59,12,31,2015)-mktime(0,0,0,1,1,2015);
-	echo "<br>$kadai4 <br>";
+	echo "$kadai4 <br>";
 
 	echo "課題５ <br>";
 	echo "名前：目黒拓也 <br>";
