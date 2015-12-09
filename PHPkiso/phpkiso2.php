@@ -17,17 +17,17 @@ echo "課題１ <br>";
 switch ($kadai1) {
 	case '1':
 	echo "one";
-		# code...
+		
 		break;
 
 	case '2':
 	echo "two";
-		# code...
+		
 		break;
 
 	default:
 	echo '想定外';
-		# code...
+		
 		break;
 }
 	echo "<br>";
@@ -57,7 +57,7 @@ $kadai3=1;
 
 for ($i=0; $i < 20; $i++) { 
 	$kadai3 *=8;
-	# code...
+	
 }
 echo "$kadai3<br>";
 
@@ -67,7 +67,7 @@ echo "課題４ <br>";
 $kadai4;
 for ($i=0; $i < 30; $i++) { 
 	$kadai4 =$kadai4.'A';
-	# code...
+	
 }
 echo "$kadai4<br>";
 
@@ -76,8 +76,9 @@ echo "課題５ <br>";
 $kadai5;
 for ($i=0; $i <=100 ; $i++) { 
 	$kadai5+=$i;
-	# code...
+	
 }
+
 echo "$kadai5<br>";
 
 echo "課題６ <br>";
@@ -86,7 +87,6 @@ $kadai6=1000;
 
 while ( $kadai6>= 100) {
 	$kadai6=$kadai6/2;
-	# code...
 }
 echo "$kadai6<br>";
 
@@ -128,17 +128,11 @@ while($kadai10 >1){
  	if ($i==3) {
  		$kadai10=0;
  		echo "その他";
- 		# code...
  	}
  	
  }
 
 }
-
-
-
-
-
 
  ?>
 

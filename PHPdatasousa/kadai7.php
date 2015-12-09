@@ -19,15 +19,14 @@
 	if(isset($_COOKIE['female'])) {
 		$female =$_COOKIE['female'];
 	}else{
-		$female='';
+		$female = null;
 	}
-
 	if(isset($_COOKIE['male'])) {
 		$male =$_COOKIE['male'];
 	}else{
-		$male='';
+		$male= null;
 	}
-
+	echo "$male";
 	if(isset($_COOKIE['hobby'])) {
 		$hobby =$_COOKIE['hobby'];
 	}else{
@@ -44,15 +43,15 @@
 	
 	<p>
 		性別：
-		<input type="radio" name="seibetu" value="男" checked="<?php echo "$male";?>" placeholder="">
+		<input type="radio" name="seibetu" value="男" <?php echo $male;?> placeholder="">
 		男
-		<input type="radio" name="seibetu" value="女" checked="<?php echo "$female";?>" placeholder="">
+		<input type="radio" name="seibetu" value="女" <?php echo $female;?>  placeholder="">
 		女</p>
 	
 	<p>
 		趣味：
 		<textarea name="hobby">
-			<?php echo "$hobby" ?>
+			<?php echo $hobby; ?>
 		</textarea>
 	</p>
 		<input type="submit" name="" value="送信">
