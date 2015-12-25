@@ -1,5 +1,5 @@
 <?php 
-function kadai9($id)
+function kadai9($id=null)
 	{
 		 $user1=array(
 		 "id:1<br>",
@@ -51,10 +51,28 @@ function kadai9($id)
 			if ($i==0) {
 			continue;
 		}
-			if ($value[$i]==false) {
+			if ($value[$i]==null) {
 				continue;
 			}
 		echo "$value[$i]";
+
+		}
+		
+	}	
+
+echo "<p>なぜ二重foreachを使わなかったのか。</p>";
+
+
+	foreach (kadai9() as $key => $value) {
+		foreach ($value as $key => $value) {
+	
+			if ($key==0) {
+			continue;
+		}
+			if ($value==null) {
+				continue;
+			}
+		echo "$value";
 
 		}
 		
