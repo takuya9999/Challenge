@@ -27,6 +27,9 @@
 		$male= null;
 	}
 	echo "$male";
+	// テキストエリアは何も入ってなくても'空文字'が入力されていると判断されisset==trueが返されるので、
+	// この場合↓、必ずtrueが返ってしまうのでelseを書く意味がない。
+	// 文字が入力されているかどうかを判断する場合、emptyを使うのが良いらしい・・・盗み聞きしてただけなので確証はない。
 	if(isset($_COOKIE['hobby'])) {
 		$hobby =$_COOKIE['hobby'];
 	}else{
@@ -48,13 +51,8 @@
 		<input type="radio" name="seibetu" value="女" <?php echo $female;?>  placeholder="">
 		女</p>
 	
-	<p>
-		趣味：
-		<textarea name="hobby">
-			<?php echo $hobby; ?>
-		</textarea>
-	</p>
-		<input type="submit" name="" value="送信">
+	<p>趣味：<textarea name="hobby"><?php echo $hobby; ?></textarea></p>
+	<input type="submit" name="" value="送信">
 	</form>
 
 	<?php 

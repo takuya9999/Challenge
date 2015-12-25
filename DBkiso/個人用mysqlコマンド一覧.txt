@@ -1,0 +1,95 @@
+データベースの作成
+create database データベース名
+
+
+mysqlの起動
+mysql -u ユーザー名 -p データベース名
+
+
+mysql -u takuya -p Challenge_db
+
+
+rootで入りたい場合は
+mysql -u root -p
+
+作業ユーザーの設定
+grant all on データベース名.* to ユーザー名@localhost identified by 'パスワード';
+
+
+
+
+
+mysql -u ユーザー名 -p データベース名
+
+
+
+mysql -u root -p
+
+
+create database Challenge_db;
+
+grant all on Challenge_db.* to takuya@localhost identified by '9999';
+
+select * from profiles;
+
+drop database Challenge_db;
+
+show variables like 'character_set%'; 
+
+
+使用データベースの切り替え
+use データベース名
+
+使用中データベースの確認
+SELECT database();
+
+create 
+
+テーブルの構造（フィールドなど）を表示
+desc テーブル名
+
+テーブルの一覧を表示
+show tables;
+
+フィールド、レコードの一覧を表示
+select * from テーブル名
+また
+select フィールド名　form テーブル名
+で任意のフィールド、レコードの一覧を表示できる
+最後に \Gで縦に一覧表示
+
+レコード数を取得
+select count(*) from テーブル名
+
+任意のフィールドに入ってるユニークなレコードの一覧
+select distinct フィールド名 from テーブル名
+
+
+ランダムで一人抽出。※limitつけないとどうなるか試す
+select * from テーブル名　order by rand() limit 1;
+
+
+レコードを複数ユーザー分登録するときにユーザーの情報に飛ばしたい項目がある
+場合はnullで行けるのか私気になります！
+なんかdotinstallだと''で空の文字列でやってた。
+
+テーブルの構造を変更する
+alter table
+
+#17分かんねぇ！追記：わかった気がする！！１１
+
+
+
+レコードの削除
+
+DELETE FROM tbl_name [WHERE where_condition];
+
+
+
+ALTER TABLE tbl_name DROP [COLUMN] col_name
+
+
+
+
+
+

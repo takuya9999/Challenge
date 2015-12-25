@@ -58,7 +58,4 @@ date_default_timezone_set('Asia/Tokyo');
 	fclose($fp);
 	echo "$kadai9";
 	echo "<br>";
-
-	
-
  ?>

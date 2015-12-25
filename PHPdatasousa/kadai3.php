@@ -7,9 +7,15 @@ setcookie('LastLoginDate',$access_time);
 
 $lastDate = $_COOKIE['LastLoginDate'];
 
-echo 'お帰りなさい！○○さん！<br>';
+if (isset($lastDate)) {
+	
+	echo 'お帰りなさい！○○さん！<br>';
 echo '前回ログイン日は、' . $lastDate . 'です！';
 
+	# code...
+}
+
 // setcookieとCOOKIEの処理のタイミングがちょっとよくわかってない
+// $_COOKIEに値が入るのはページを更新するタイミング。らしい。
 
  ?>
