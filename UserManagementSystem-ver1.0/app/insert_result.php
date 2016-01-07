@@ -1,6 +1,12 @@
 <?php require_once '../common/scriptUtil.php'; ?>
 <?php require_once '../common/dbaccesUtil.php'; ?>
-
+<?php 
+if (!isset($_POST['true'])) {
+    header("Location: ./insert.php");
+}
+session_start();
+date_default_timezone_set('Asia/Tokyo');
+ ?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -11,36 +17,51 @@
 <body>
 
     <?php
-    session_start();
     $name = $_SESSION['name'];
     $birthday = $_SESSION['birthday'];
     $type = $_SESSION['type'];
     $tell = $_SESSION['tell'];
     $comment = $_SESSION['comment'];
 
+
     //db接続を確立
     $insert_db = connect2MySQL();
+    insertprof($insert_db);
     
-    //DBに全項目のある1レコードを登録するSQL
-    $insert_sql = "INSERT INTO user_t(name,birthday,tell,type,comment,newDate)"
-            . "VALUES(:name,:birthday,:tell,:type,:comment,:newDate)";
+//     try{
+//     //DBに全項目のある1レコードを登録するSQL
+//     // $insert_sql = "INSERT INTO user_t(name,birthday,tell,type,comment,newDate)"
+//     //         . "VALUES(:name,:birthday,:tell,:type,:comment,:newDate)";
 
-    //クエリとして用意
-    $insert_query = $insert_db->prepare($insert_sql);
+// $insert_sql = "INSERT INTO user_t(name,birthday,tell,type,comment,newDate)"
+//             . "VALUES(:name,:birthday,:tell,:type,:comment,:newDate)";
 
-    //SQL文にセッションから受け取った値＆現在時をバインド
-    $insert_query->bindValue(':name',$name);
-    $insert_query->bindValue(':birthday',$birthday);
-    $insert_query->bindValue(':tell',$tell);
-    $insert_query->bindValue(':type',$type);
-    $insert_query->bindValue(':comment',$comment);
-    $insert_query->bindValue(':newDate',time());
+//     //クエリとして用意
+//     $insert_query = $insert_db->prepare($insert_sql);
+
+//     //SQL文にセッションから受け取った値＆現在時をバインド
+//     $insert_query->bindValue(':name',$name);
+//     $insert_query->bindValue(':birthday',$birthday);
+//     $insert_query->bindValue(':tell',$tell);
+//     $insert_query->bindValue(':type',$type);
+//     // $insert_query->bindValue(':type','あ');
+//     $insert_query->bindValue(':comment',$comment);
+//     // $insert_query->bindValue(':newDate',time());
+//     $insert_query->bindValue(':newDate',date("y-m-d H:i:s"));
     
-    //SQLを実行
-    $insert_query->execute();
+//     //SQLを実行
+//     $insert_query->execute();
     
-    //接続オブジェクトを初期化することでDB接続を切断
-    $insert_db=null;
+//     // if(!$insert_query->execute()){
+//     //     echo "エラー";
+//     // }
+
+
+//     //接続オブジェクトを初期化することでDB接続を切断
+//     $insert_db=null;
+// }catch(PDOException $e){
+//     echo "データの挿入に失敗しました:".$e->getMessage();
+// }
     ?>
 
     <h1>登録結果画面</h1><br>

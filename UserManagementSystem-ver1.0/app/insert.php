@@ -8,7 +8,7 @@ if (!isset($_POST['no'])) {
     $_SESSION['year'] = '----';
     $_SESSION['month'] = '--';
     $_SESSION['day'] = '--';
-    $_SESSION['type'] = 'エンジニア';
+    $_SESSION['type'] = '1';
     $_SESSION['tell'] = null;
     $_SESSION['comment'] = null;
 }
@@ -32,33 +32,33 @@ if (!isset($_POST['no'])) {
     
     生年月日:　
     <select name="year">
-        <option value="<?php echo $_SESSION['year']; ?>"><?php echo $_SESSION['year']; ?></option>
+        <option value="----">----</option>
         <?php
         for($i=1950; $i<=2010; $i++){ ?>
-        <option value="<?php echo $i;?>"><?php echo $i ;?></option>
+        <option value="<?php echo $i;?>" <?php if($i==$_SESSION['year']){echo "selected";} ?> ><?php echo $i ;?></option>
         <?php } ?>
     </select>年
     <select name="month">
-        <option value="<?php echo $_SESSION['month']; ?>"><?php echo $_SESSION['month']; ?></option>
+        <option value="--">--</option>
         <?php
         for($i = 1; $i<=12; $i++){?>
-        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+        <option value="<?php echo $i;?>" <?php if($i==$_SESSION['month']){echo "selected";} ?> ><?php echo $i;?></option>
         <?php } ;?>
     </select>月
     <select name="day">
-        <option value="<?php echo $_SESSION['day']; ?>"><?php echo $_SESSION['day']; ?></option>
+        <option value="--">--</option>
         <?php
         for($i = 1; $i<=31; $i++){ ?>
-        <option value="<?php echo $i; ?>"><?php echo $i;?></option>
+        <option value="<?php echo $i; ?>" <?php if($i==$_SESSION['day']){echo "selected";} ?> ><?php echo $i;?></option>
         <?php } ?>
     </select>日
     <br><br>
 
     種別:
     <br>
-    <input type="radio" name="type" value="エンジニア" <?php if($_SESSION['type']=="エンジニア")echo "checked"; ?>>エンジニア<br>
-    <input type="radio" name="type" value="営業" <?php if($_SESSION['type']=="営業")echo "checked"; ?>>営業<br>
-    <input type="radio" name="type" value="その他" <?php if($_SESSION['type']=="その他")echo "checked"; ?>>その他<br>
+    <input type="radio" name="type" value="1" <?php if($_SESSION['type']=="1")echo "checked"; ?>>エンジニア<br>
+    <input type="radio" name="type" value="2" <?php if($_SESSION['type']=="2")echo "checked"; ?>>営業<br>
+    <input type="radio" name="type" value="3" <?php if($_SESSION['type']=="3")echo "checked"; ?>>その他<br>
     <br>
     
     電話番号:

@@ -1,5 +1,6 @@
 <?php require_once '../common/defineUtil.php'; ?>
 <?php require_once '../common/scriptUtil.php'; ?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -20,12 +21,15 @@
         $post_comment = $_POST['comment'];
 
         //セッション情報に格納
-        session_start();
+        // session_start();
         $_SESSION['name'] = $post_name;
         $_SESSION['birthday'] = $post_birthday;
         $_SESSION['type'] = $post_type;
         $_SESSION['tell'] = $post_tell;
         $_SESSION['comment'] = $post_comment;
+        $_SESSION['year'] = $_POST['year']; 
+        $_SESSION['month'] = $_POST['month']; 
+        $_SESSION['day'] = $_POST['day']; 
     ?>
 
         <h1>登録確認画面</h1><br>
@@ -39,13 +43,13 @@
 
         <form action="<?php echo INSERT_RESULT ?>" method="POST">
           <input type="submit" name="yes" value="はい">
+          <input type="hidden" name="true" value="">
         </form>
         <form action="<?php echo INSERT ?>" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         
     <?php }else{ 
-        session_start();
         if (empty($_POST['name']) ) {
         echo "名前の入力が不完全です<br>";  
         }else{

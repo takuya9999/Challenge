@@ -5,7 +5,6 @@ date_default_timezone_set('Asia/Tokyo');
 $access_time = date('Y年m月d日h:i:s');
 setcookie('LastLoginDate',$access_time);
 
-
 // 初回ログイン時はクッキーにLastLoginDateがセットされていないので、'LastLoginDate'は未定義の変数として扱われる
 // 未定義の変数はnullを返すので条件式は処理されるが、Notice: Undefined variable（エラー文）を吐き出す。
 //未定義の変数を判定する場合はissetを使用する。変数が未定義、またはnullの場合はfaulseを返す。
@@ -19,6 +18,11 @@ if(isset($_COOKIE['LastLoginDate'])){
 }else{
 	echo '初めまして〇〇さん！';
 }
+
+
+
+// setcookie();に限らず、処理のタイミングには気をつける。
+// クッキーではなく、sessionの場合は処理を後ろに書かないと"初めまして！"が処理されないとかね
 
 
 

@@ -45,8 +45,7 @@ define('PDO_DSN','mysql:dbhost=localhost;dbname='.DB_DATABASE);
 
     class Human extends base{
 
-    	// public $stmt;
-      // public $thstmt;
+    	public $stmt;
     	public $th;
         private $table;
         private $use;
@@ -75,14 +74,10 @@ define('PDO_DSN','mysql:dbhost=localhost;dbname='.DB_DATABASE);
 $this->pdo_object = new PDO(PDO_DSN , DB_USERNAME,DB_PASSWORD);
 $this->pdo_object->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$stmt= $this->pdo_object->query("select * from $this->table");
-$this->use =$stmt->fetchALL(PDO::FETCH_ASSOC);
+$this->stmt= $this->pdo_object->query("select * from $this->table");
+		$this->use =$this->stmt->fetchALL(PDO::FETCH_ASSOC);
 		// var_dump($this->use);
-$thstmt = $this->pdo_object->query("desc $this->table");
-$this->th=$thstmt->fetchALL(PDO::FETCH_BOTH);
-
-// 配列をオフセット（0,1,2....）で取得したい時はFETCH_BOTHを使用する
-
+$this->th = $this->pdo_object->query("desc $this->table");
 
 $this->pdo_object = null;
 }catch(PDOException $e){
@@ -97,15 +92,21 @@ exit;
         function show(){
 
 
+
+    	  	// echo "$this->table";
+
+    	try{
+$this->pdo_object = new PDO(PDO_DSN , DB_USERNAME,DB_PASSWORD);
+$this->pdo_object->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+
+
+
 echo "現在のテーブルは<font color='#FF0000'>".$this->table."</font>です";
 echo '<table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">';
 echo "<tr>";
-  // var_dump($this->th);
-
-foreach ($this->th as $key => $value) {
-  // var_dump($value);
-echo '<th bgcolor="#EE0000" align="right" nowrap><font color="#FFFFFF">'.$value[0].'</font></th>';
-    
+while ($row = $this->th->fetch(PDO::FETCH_NUM)) {
+echo '<th bgcolor="#EE0000" align="right" nowrap><font color="#FFFFFF">'."$row[0]".'</font></th>';
   }
 echo "</tr>";
 
@@ -113,24 +114,31 @@ echo "</tr>";
 // テーブルの内容を一覧表示させる処理
 // この処理を一番最初に書いてしまうと、商品情報に変更、追加があった場合のmysql実行結果が表示に反映されないので、
 // フォームの処理の後に記述する
+if($this->stmt->execute()){
+$users = $this->stmt->fetchALL(PDO::FETCH_ASSOC);
 
-foreach($this->use as $key => $value) {
+foreach($users as $key => $value) {
 	echo "<tr>";
-	// $use[$key] よりもスマートな指定方法ってあるのん？$valueじゃダメだったっけ？
-	foreach ($this->use[$key] as $key => $value) {
+	// $users[$key] よりもスマートな指定方法ってあるのん？
+	foreach ($users[$key] as $key => $value) {
 		echo '<td bgcolor="#99CC00" align="right" nowrap>'."$value".'</td>';
 		
 	}
 		echo "</tr>";
 	}
-
+}
 	echo "</table>";
 
 
 
 
 
-
+$this->pdo_object = null;
+}catch(PDOException $e){
+// エラーメッセージ
+echo $e->getMessage();
+exit;
+}
 
         }
     
@@ -144,9 +152,108 @@ foreach($this->use as $key => $value) {
 
 // -------------------------↓Stationクラス-----------------------------------------------------
 
-// コードの内容がHumanクラスと同じなので割愛
 
-// -------------------------↑Stationクラス-----------------------------------------------------
+    class Station extends base{
+
+    	public $stmt;
+    	public $th;
+        private $table;
+        private $use;
+        private $pdo_object ;
+
+    	function  __construct($tablename){
+    		$this->table=$tablename;
+    	}
+
+
+
+
+
+    	  function load(){
+
+ // 定数の定義
+// define('DB_DATABASE','Challenge_db');
+// define('DB_USERNAME','takuya');
+// define('DB_PASSWORD','9999');
+// define('PDO_DSN','mysql:dbhost=localhost;dbname='.DB_DATABASE);
+
+// ステートメントハンドラにmysqlの実行結果を格納
+
+    	try{
+$this->pdo_object = new PDO(PDO_DSN , DB_USERNAME,DB_PASSWORD);
+$this->pdo_object->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+$this->stmt= $this->pdo_object->query("select * from $this->table");
+		$this->use =$this->stmt->fetchALL(PDO::FETCH_ASSOC);
+		// var_dump($this->use);
+$this->th = $this->pdo_object->query("desc $this->table");
+
+$this->pdo_object = null;
+}catch(PDOException $e){
+// エラーメッセージ
+echo $e->getMessage();
+exit;
+}
+
+		
+        }
+
+        function show(){
+
+
+
+    	  	// echo "$this->table";
+
+    	try{
+$this->pdo_object = new PDO(PDO_DSN , DB_USERNAME,DB_PASSWORD);
+$this->pdo_object->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+
+
+
+echo "現在のテーブルは<font color='#FF0000'>".$this->table."</font>です";
+echo '<table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">';
+echo "<tr>";
+while ($row = $this->th->fetch(PDO::FETCH_NUM)) {
+echo '<th bgcolor="#EE0000" align="right" nowrap><font color="#FFFFFF">'."$row[0]".'</font></th>';
+  }
+echo "</tr>";
+
+// ------------------------------------------------------------
+// テーブルの内容を一覧表示させる処理
+// この処理を一番最初に書いてしまうと、商品情報に変更、追加があった場合のmysql実行結果が表示に反映されないので、
+// フォームの処理の後に記述する
+if($this->stmt->execute()){
+$users = $this->stmt->fetchALL(PDO::FETCH_ASSOC);
+
+foreach($users as $key => $value) {
+	echo "<tr>";
+	// $users[$key] よりもスマートな指定方法ってあるのん？
+	foreach ($users[$key] as $key => $value) {
+		echo '<td bgcolor="#99CC00" align="right" nowrap>'."$value".'</td>';
+		
+	}
+		echo "</tr>";
+	}
+}
+	echo "</table>";
+
+
+
+
+
+$this->pdo_object = null;
+}catch(PDOException $e){
+// エラーメッセージ
+echo $e->getMessage();
+exit;
+}
+
+        }
+    
+
+}
+// -------------------------↑Hunmanクラス-----------------------------------------------------
 
 
 
@@ -156,7 +263,6 @@ foreach($this->use as $key => $value) {
 
    $human = new Human("OBJ2human");
    $station = new Human("OBJ2station");
-   // $station = new Human("OBJ2station");
 
    $human->load();
    $human->show();

@@ -258,6 +258,13 @@ $users = $stmt->fetchALL(PDO::FETCH_ASSOC);
 }
 
 
+if(isset($_POST['TBdrop'])) {
+$removetb = $_POST['TB_name'];
+$pdo_object->query("DELETE FROM $removetb");
+
+}
+
+
 
 
 // issetとtrue,faulseの違いがわかってない。
