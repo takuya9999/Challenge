@@ -69,9 +69,10 @@ echo "<p>なぜ二重foreachを使わなかったのか。</p>";
 			if ($key==0) {
 			continue;
 		}
-			if ($value==null) {
-				continue;
-			}
+			// if ($value==null) {
+			// 	continue;
+			// }
+		// っていうか、nullってechoしても何も表示されないからcontinueでスキップしてるかわからない。どうすればいいんや
 		echo "$value";
 
 		}

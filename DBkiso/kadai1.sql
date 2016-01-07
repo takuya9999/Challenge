@@ -47,6 +47,28 @@ Foreign key (stationID) references station (stationID)
 );
 
 
+create table user_t(
+userID int auto_increment ,
+name varchar(255),
+birthday date,
+tell varchar(255) ,
+type int,
+comment text,
+newDate datetime,
+primary key (userID)
+);
+
+
+create table OBJ2human(
+userID int not null auto_increment ,
+name varchar(255),
+tell varchar(255) ,
+age int,
+birthday date,
+primary key (userID)
+);
+
+
 
 insert into user(name,tell,age,birthday,departmentID, stationID) values
 	('田中　実','012-345-6789',30,'1994-02-01',3,1),
@@ -54,6 +76,13 @@ insert into user(name,tell,age,birthday,departmentID, stationID) values
 	('鈴木　実','080-5566-7788',24,'2000-12-24',2,5),
 	('佐藤　清','012-0987-6543',19,'2005-08-01',1,5),
 	('高橋　清','090-9900-1234',24,'2000-12-24',3,5);
+
+insert into OBJ2human(name,tell,age,birthday) values
+	('田中　実','012-345-6789',30,'1994-02-01'),
+	('鈴木　茂','090-1122-3344',37,'1987-08-12'),
+	('鈴木　実','080-5566-7788',24,'2000-12-24'),
+	('佐藤　清','012-0987-6543',19,'2005-08-01'),
+	('高橋　清','090-9900-1234',24,'2000-12-24');
 
 create table department(
 departmentID int auto_increment primary key,
@@ -74,11 +103,19 @@ stationID int auto_increment primary key,
 stationName varchar(255) 
 );
 
+
+
+
+create table OBJ2station(
+stationID int auto_increment primary key,
+stationName varchar(255) 
+);
+
 -- stationNameにuniqueつけると54321の順で入るのんなー？
 
 
 
-insert into station(stationName) values
+insert into OBJ2station(stationName) values
 	('九段下'),
 	('永田町'),
 	('渋谷'),
