@@ -2,6 +2,7 @@
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -11,7 +12,11 @@ require_once '../common/dbaccesUtil.php';
 </head>
 <body>
     <?php
-    $result = delete_profile($_GET['id']);
+    if (isset($_POST['YES'])) {
+         $id=$_POST['id'];
+    }
+    var_dump($id);
+    $result = delete_profile($id);
     //エラーが発生しなければ表示を行う
     if(!isset($result)){
     ?>

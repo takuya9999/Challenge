@@ -2,6 +2,7 @@
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -11,7 +12,12 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php
-    $result = profile_detail($_GET['id']);
+    // $id=bind_p2s('id');
+    if (isset($_POST['delete'])) {
+         $id=$_POST['id'];
+    $result = profile_detail($id);
+    }
+   
     //エラーが発生しなければ表示を行う
     if(is_array($result)){
     ?>
@@ -25,10 +31,14 @@ require_once '../common/dbaccesUtil.php';
     登録日時:<?php echo date('Y年n月j日　G時i分s秒', strtotime($result[0]['newDate'])); ?><br>
     
     <form action="<?php echo DELETE_RESULT; ?>" method="POST">
+        <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="submit" name="YES" value="はい"style="width:100px">
+
     </form><br>
-    <form action="<?php echo RESULT_DETAIL; ?>" method="POST">
+    <form action="<?php echo RESULT_DETAIL; ?>" method="POST"><!-- 戻る時にGET使うメリットが思い当たらないのでPOSTで戻す -->
+        <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="submit" name="NO" value="詳細画面に戻る"style="width:100px">
+
     </form>
     
     <?php

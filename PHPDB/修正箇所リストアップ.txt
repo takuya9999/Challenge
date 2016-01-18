@@ -1,0 +1,34 @@
+修正箇所リストアップ
+
+・種別を除いた複合検索時にtypeのundefined indexエラーが出る
+:10分
+ラジオボックスのGET,POSTで取得できる値ってcheckedが入っているラジオのバリューだけ？
+多分そうだと思うけど確認する。
+
+・$flagの条件式が間違っている $flag=false ではなく $flag == false　多分ね！
+・sql文の変数の数とbindvalueの数が一致しないのでエラーが返ってくる。bindvalueの処理の修正10ふん
+
+・update.php on line 15 でUndefined indexエラーが出るので$_POST['name']にする
+result_detailのinputにhiddenでname="id"のPOSTを作成する
+
+
+・生年月日に値が入ってないので、入るようにする。:30分
+
+・update_result.php on line 14　$_GETを$_POSTにし、update.phpのinput=hiddenでidのvalueを送る
+１０分
+
+・update_result.php on line 14　関数が未実装なので、実装する。
+
+・delete_profile関数のDELETEのスペルがDELEtEになっているのでtをTに修正する：10秒
+
+DELETE FROMがDELETE * FROMになっているのを修正
+
+
+
+-----------------------------------------------------------------------
+
+・なぜPOSTとGETを使い分けているのかを聞いて、それを踏まえたうえでコードを修正する。
+
+update関数がかなり適当な実装したからスマートなやり方を聞きたい
+
+unset($_SESSION['count']);使ってみよか

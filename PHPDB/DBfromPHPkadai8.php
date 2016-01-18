@@ -206,7 +206,7 @@ if (isset($_POST['TBcreate'])) {
 }if (isset($_POST['TBdrop'])) {
 	if (!empty($_POST['TB_name'])) {
 		$TB_name=$_POST['TB_name'];
-		$stmt = $pdo_object->query("DROP TABLE $TB_name ");
+		$stmt = $pdo_object->query("TRUNCATE TABLE $TB_name ");
 
 	}
 

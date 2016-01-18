@@ -83,28 +83,44 @@ function serch_profiles($name=null,$year=null,$type=null){
     
     $search_sql = "SELECT * FROM user_t";
     $flag = false;
+    $nameflag=false;
+    $yearflag=false;
+    $typeflag=false;
     if(isset($name)){
         $search_sql .= " WHERE name like :name";
         $flag = true;
+        $nameflag = true;
     }
-    if(isset($year) && $flag = false){
+    if(isset($year) && $flag == false){
         $search_sql .= " WHERE birthday like :year";
         $flag = true;
+        $yearflag = true;
     }else if(isset($year)){
         $search_sql .= " AND birthday like :year";
+        $yearflag = true;
+
     }
-    if(isset($type) && $flag = false){
+    if(isset($type) && $flag == false){
         $search_sql .= " WHERE type = :type";
+        $typeflag=true;
+
     }else if(isset($type)){
         $search_sql .= " AND type = :type";
+        $typeflag=true;
+
     }
     
     //クエリとして用意
     $seatch_query = $search_db->prepare($search_sql);
-    
+    if ($nameflag) {
     $seatch_query->bindValue(':name','%'.$name.'%');
-    $seatch_query->bindValue(':year','%'.$year.'%');
+    }
+    if ($yearflag) {
+    $seatch_query->bindValue(':year','%'.$year.'%');    
+    }
+    if ($typeflag) {
     $seatch_query->bindValue(':type',$type);
+    }
     //SQLを実行
     try{
         $seatch_query->execute();
@@ -142,11 +158,50 @@ function profile_detail($id){
     return $detail_query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+function update_profile($id,$name,$birthday,$tell,$type,$comment){
+
+    $update_db = connect2MySQL();
+    
+    $update_sql = "UPDATE user_t set name=:name, birthday=:birthday, tell=:tell, type=:type, comment=:comment,newDate=:newDate WHERE userID=:id";
+    
+
+  //現在時をdatetime型で取得
+date_default_timezone_set('Asia/Tokyo');
+    $datetime =new DateTime();
+    $date = $datetime->format('Y-m-d H:i:s');
+
+    //クエリとして用意
+    $update_query = $update_db->prepare($update_sql);
+    
+    $update_query->bindValue(':id',$id);
+    $update_query->bindValue(':name',$name);
+    $update_query->bindValue(':birthday',$birthday);
+    $update_query->bindValue(':tell',$tell);
+    $update_query->bindValue(':type',$type);
+    $update_query->bindValue(':comment',$comment);
+    $update_query->bindValue(':newDate',$date);
+    
+    //SQLを実行
+    try{
+        $update_query->execute();
+    } catch (PDOException $e) {
+        $update_query=null;
+        return $e->getMessage();
+    }
+    return null;
+}
+
+
+
+
+
+
 function delete_profile($id){
     //db接続を確立
     $delete_db = connect2MySQL();
     
-    $delete_sql = "DELEtE * FROM user_t WHERE userID=:id";
+    $delete_sql = "DELETE FROM user_t WHERE userID=:id";
     
     //クエリとして用意
     $delete_query = $delete_db->prepare($delete_sql);

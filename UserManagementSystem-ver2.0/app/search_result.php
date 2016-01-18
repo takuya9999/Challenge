@@ -23,7 +23,11 @@ require_once '../common/dbaccesUtil.php';
         if(empty($_GET['name']) && empty($_GET['year']) && empty($_GET['type'])){
             $result = serch_all_profiles();
         }else{
+            if (empty($_GET['type'])) {
+                $_GET['type']=null;
+            }
             $result = serch_profiles($_GET['name'],$_GET['year'],$_GET['type']);
+            // var_dump($result);
         }
         foreach($result as $value){
         ?>

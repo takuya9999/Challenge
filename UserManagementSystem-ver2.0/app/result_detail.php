@@ -2,6 +2,7 @@
 require_once '../common/defineUtil.php';
 require_once '../common/scriptUtil.php';
 require_once '../common/dbaccesUtil.php';
+// session_start();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -12,7 +13,17 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php
-    $result = profile_detail($_GET['id']);
+    // if(isset($_SESSION['id'])){
+    //     $id=$_SESSION['id'];
+    // }
+    if (isset($_POST['NO'])) {
+        $id=$_POST['id'];
+    }else if(isset($_GET['id'])){
+    $id =$_GET['id'];
+}
+
+    $result = profile_detail($id);
+
     //エラーが発生しなければ表示を行う
     if(is_array($result)){
     ?>
@@ -27,9 +38,11 @@ require_once '../common/dbaccesUtil.php';
     
     <form action="<?php echo UPDATE; ?>" method="POST">
         <input type="submit" name="update" value="変更"style="width:100px">
+        <input type="hidden" name="id" value="<?php echo $id; ?>" >
     </form>
     <form action="<?php echo DELETE; ?>" method="POST">
         <input type="submit" name="delete" value="削除"style="width:100px">
+        <input type="hidden" name="id" value="<?php echo $id; ?>" >
     </form>
     
     <?php

@@ -11,7 +11,16 @@ require_once '../common/dbaccesUtil.php';
 </head>
   <body>
     <?php
-    $result = update_profile($_GET['id']);
+     if (isset($_POST['mode'])) {
+    $name = $_POST['name'];
+    $id=$_POST['id']; 
+}
+    //date型にするために1桁の月日を2桁にフォーマットしてから格納
+    $birthday = $_POST['year'].'-'.sprintf('%02d',$_POST['month']).'-'.sprintf('%02d',$_POST['day']);
+    $type = $_POST['type'];
+    $tell = $_POST['tell'];
+    $comment = $_POST['comment'];
+    $result = update_profile($id,$name,$birthday,$tell,$type,$comment);
     //エラーが発生しなければ表示を行う
     if(!isset($result)){
     ?>

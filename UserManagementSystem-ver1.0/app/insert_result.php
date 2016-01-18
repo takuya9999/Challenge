@@ -25,10 +25,9 @@ date_default_timezone_set('Asia/Tokyo');
 
 
     //db接続を確立
-    $insert_db = connect2MySQL();
-    insertprof($insert_db);
+    // $insert_db = connect2MySQL();
+    insertprof($name,$birthday,$type,$tell,$comment);
     
-//     try{
 //     //DBに全項目のある1レコードを登録するSQL
 //     // $insert_sql = "INSERT INTO user_t(name,birthday,tell,type,comment,newDate)"
 //     //         . "VALUES(:name,:birthday,:tell,:type,:comment,:newDate)";
@@ -43,13 +42,16 @@ date_default_timezone_set('Asia/Tokyo');
 //     $insert_query->bindValue(':name',$name);
 //     $insert_query->bindValue(':birthday',$birthday);
 //     $insert_query->bindValue(':tell',$tell);
-//     $insert_query->bindValue(':type',$type);
-//     // $insert_query->bindValue(':type','あ');
+//     // $insert_query->bindValue(':type',$type);
+//     $insert_query->bindValue(':type','え',PDO::PARAM_INT);
 //     $insert_query->bindValue(':comment',$comment);
 //     // $insert_query->bindValue(':newDate',time());
 //     $insert_query->bindValue(':newDate',date("y-m-d H:i:s"));
-    
+  
+//     try{
+
 //     //SQLを実行
+
 //     $insert_query->execute();
     
 //     // if(!$insert_query->execute()){
