@@ -1,0 +1,347 @@
+<!DOCTYPE html> 
+<html lang="ja">
+<head> 
+<meta charset="utf-8">
+<script type="text/javascript" src="http://code.createjs.com/easeljs-0.5.0.min.js"></script>
+<script type="text/javascript" src="http://code.createjs.com/preloadjs-0.1.0.min.js"></script>
+<script type="text/javascript" src="http://code.createjs.com/tweenjs-0.3.0.min.js"></script>
+<!--<script type="text/javascript" src="./Tween.js"></script>-->
+<!--<script type="text/javascript" src="./Ease.js"></script>-->
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="processing-1.4.1.min.js"></script>
+<script type="text/javascript" src="jcanvas.min.js"></script>
+<script type="text/javascript" src="shortcut.js"></script>
+<script type="text/javascript" src="farbtastic.js"></script>
+<script type="text/javascript" src="rgbcolor.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="canvas2image.js"></script>
+<script type="text/javascript" src="music.js"></script>
+<script type="text/javascript" src="audiolet_app.js"></script>
+<script type="text/javascript" src="Audiolet.js"></script>
+<script type="text/javascript" src="./canvasLCD.js"></script>
+
+
+<link rel="stylesheet" href="farbtastic.css" type="text/css" />
+<link rel="stylesheet" href="jquery-ui-1.9.0.custom.min.css">
+<title>VJpaint</title> 
+<style type="text/css">
+<!--
+
+body {
+ background: -webkit-linear-gradient(
+  #000, #0f0f0f);
+  color:#f0f0f0;
+  font-family: 'Audiowide', cursive;
+}
+
+
+#synth {
+	position:absolute;
+	top:10px;
+	left:10px;
+
+}
+
+
+
+
+
+#canvasArea {
+	position:absolute;
+	border-image: url("./border.png") 32;
+	border-style:solid; border-width:3px; 
+	background-color:#000;
+ 	//opacity:0.95;
+	clear:both;
+	top:100px;
+	left:300px;
+	z-index: 2;
+	width:600px;
+	height:400px;
+}
+
+#padArea {
+	position:absolute;
+//	background-image: url("tile.gif");
+	background: -webkit-gradient(radial, center center, 0, center center, 480, from(#FFF), color-stop(0.4, #9F0), to(#000));
+	border: solid 1px #fff;
+	clear:both;
+	top:100px;
+	left:400px;
+	z-index: 1;
+	width:1200px;
+	height:600px;
+}
+
+
+#canvasArea canvas {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	width: 600px;
+	height: 400px;
+
+
+}
+
+.opacity {
+	
+
+}
+
+
+
+
+
+#tool {
+	
+	position:absolute;
+	top:70px;
+	left:915px;
+	z-index:3;
+	
+}
+
+
+#layerbox {
+
+	position:absolute;
+	
+	top:140px;
+	left:0px;
+
+}
+
+
+
+
+#bwbox,#opbox {
+    margin: 20px 0px 20px 0px;
+    font-size:13px;
+}
+
+
+#bw,#op {
+    display:inline-block;
+    width: 30px;
+    height: 17px;
+    border: 1px solid #BBBBBB;
+}
+
+
+#widthslider,#opacityslider {
+    margin: -18px 0px 10px 120px;
+    width: 150px;
+}
+
+#colorpicker{
+	
+  position:relative;  
+     left:45px;
+	
+}
+
+
+#color{
+	width:80px;
+}
+#formbox{
+
+	position:relative;
+	
+
+}
+
+#point{
+
+	display: inline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+header {
+  text-shadow: 1px 1px 3px #8f8;
+}
+input, button, select {
+  font-family: 'Audiowide', cursive;
+}
+hr {
+  border: none;
+  border-top: 1px #333333 solid;
+}
+#logo {
+ position:absolute;
+ top:10px;
+ left:460px;
+}
+
+
+
+.spacer10 {
+  clear: both;
+  width: auto;
+  height: 10px;
+}
+.spacer5 {
+  clear: both;
+  width: auto;
+  height: 5px;
+}
+
+
+
+
+
+
+
+-->
+</style>
+
+
+</head>
+
+<body>
+
+
+
+
+<div id="padArea">
+
+	
+	<h1><img src="./logo_2.png" alt="VJpaint" title="VJpaint" width="300" height="90" id="logo"></h1>
+	<div id="synth">
+		<table>
+			<tbody>
+			<tr>
+		            <td rowspan="2">URL</td>
+		            <td colspan="2">
+		              <input id="url0" type="text" value="http://www.g200kg.com/webmidilink/gmplayer/" size="45">
+		            </td>
+		          </tr>
+		          <tr>
+		            <td>
+		              <select id="synthsel" onchange="SetUrl(&#39;url0&#39;,this[this.selectedIndex].value)">
+		              <option value="http://www.g200kg.com/webmidilink/gmplayer/">g200kg:GMPlayer</option><option value="http://www.g200kg.com/en/docs/webmodular/webmodular.html">g200kg:WebModular</option><option value="http://aikelab.net/websynth/">aike:WebSynth</option><option value="http://script-synthesizer.herokuapp.com/">mohayonao:Timbre.js</option><option value="http://beatonica.com/">aike:Beatonica</option><option value="http://www.g200kg.com/en/docs/webbeeper/">g200kg:WebBeeper</option><option value="http://www.angryoctopus.co.nz/synth16/">GameSmith:Webitaur</option><option value="http://aikelab.net/bitmaker/">aike:BitMaker</option><option value="http://www.g200kg.com/en/docs/webbridge/">g200kg:WebBridge</option><option value="http://www.taktech.org/takm/WebFMSynth/">Takashi Mizuhiki:WebFMsynthesizer</option><option value="http://www.g200kg.com/webmidilink/mididevdrive/">g200kg:MidiDevDrive</option></select>
+		            </td>
+		            <td align="right"><button onclick="synth.Load(document.getElementById(&#39;url0&#39;).value)">Load</button></td>
+		           </tr>
+		           <tr>
+		             <td>SCALE</td>
+		             <td>
+		               <select id="root" onchange="SetKey(this[this.selectedIndex].value)">
+		                 <option value="0">C</option>
+		                 <option value="1">C#</option>
+		                 <option value="2">D</option>
+		                 <option value="3">D#</option>
+		                 <option value="4">E</option>
+		                 <option value="5">F</option>
+		                 <option value="6">F#</option>
+		                 <option value="7">G</option>
+		                 <option value="8">G#</option>
+		                 <option value="9">A</option>
+		                 <option value="10">A#</option>
+		                 <option value="11">B</option>
+		               </select>
+		               <select id="root" onchange="SetScale(eval(this[this.selectedIndex].value))">
+		                 <option value="[0,1,2,3,4,5,6,7,8,9,10,11]">Chromatic</option>
+		                 <option value="[0,2,4,5,7,9,11]">Major</option>
+		                 <option value="[0,2,3,5,7,8,10]">Minor</option>
+		                 <option value="[0,2,3,5,7,8,11]">Harmonic Minor</option>
+		                 <option value="[0,2,3,5,7,9,11]">Melodic Minor</option>
+		                 <option value="[0,2,4,6,8,10]">Whole Tone</option>
+		                 <option value="[0,2,3,5,6,8,9,11]">Diminished</option>
+		                 <option value="[0,3,5,7,10]" selected="">Minor Pentatonic</option>
+		                 <option value="[0,2,4,7,9]">Major Pentatonic</option>
+				　<option value="[0,4,5,7,11]">Ryukyu</option>
+				　
+		               </select>
+		             </td>
+		           </tr>
+		           <tr>
+		             <td>BPM</td>
+		             <td>
+		               <input id="bpm" type="number" value="120" min="60" max="220">
+		             </td>
+		           </tr>
+		        </tbody>
+		</table>
+	</div>
+	<div id="tool">
+		<div id="colorbox">
+			<div id="colorpicker">
+			</div>
+		 
+		<form><input type="text" id="color" name="color" value="#123456" /></form>
+		</div>
+		<div id="point" widrh="100" height="50" bgcolor="#ccc">
+			x:0,y:0 	
+		</div>
+		<form autocomplete="off" id="formbox">
+			<label><input type="radio" name="brush" id="effectbrush"  >Let's VJplaying♪♪</label><label><input type="checkbox"  name="c_timer"  id="c_timer">ColorTimer</label><br>
+			<label><input type="radio" name="brush" id="brush"  checked>Brush</label>
+			<label><input type="radio" name="brush" id="airbrush"  >AirBrush</label>
+			<label><input type="radio" name="brush" id="lighterbrush"  >LighterBrush</label><br>
+			<label><input type="radio" name="brush" id="Eraser"  >Eraser</label>
+		        <label><input type="radio" name="brush" id="airEraser"  >AirEraser</label>
+			<label><input type="radio" name="brush" id="spuit" />Spuit</label><br>
+			<input type="button" id="fillbutton"  value="FillCanvas"><input type="button" id="fillopacitybutton"  value="FillTranslucent">
+			<div id="bwbox">
+				BrushWidth&nbsp;<input type="text" id="bw" value="10" readonly="readonly" />
+				<div id="widthslider"></div>
+			</div>
+		
+			<div id="opbox">
+				BrushOpacity&nbsp;<input type="text" id="op" value="100" readonly="readonly" />
+				<div id="opacityslider"></div>
+			</div>
+
+
+			<input type="button" id="clearButton"  value="Clear">
+			<input type="button" id="undoButton" value="Undo">
+			<input type="button" id="saveButton"  value="SaveImage">
+		</form>
+	</div>
+
+	<div id ="layerbox" style="float:left;">
+       		<form>
+			<fieldset id="speaker" style="border:none;">
+				<label><input type="checkbox" name="brush" id="lock" />LockOpacity</label>				
+			</filedset>
+			<fieldset id="addlayer">
+				<label><input type="button"  id="addlayerbutton"  value="+" ></label><label><input type="button"  id="removelayerbutton"  value="－" ></label>
+				<label><input type="button"  id="upbutton"  value="↑" ></label><label><input type="button"  id="downbutton"  value="↓" ><br>
+				<label><input type="button"  id="composite"  value="Composite" ></label><label><input type="button"  id="copy"  value="Copy" ></label><br>
+			</filedset>
+			<fieldset id="activeLayerPalette">
+				<span>Layer<br></span>
+				<div id="layerArea">
+					<span><input type="checkbox" name="visibleLayer" id="visibleLayer3" checked><label><input type="radio" name="selectLayer"checked>layer1<br></label></span>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div id="canvasArea">
+		<canvas  width="1800" height="1200" style="opacity : 1;" id="start"></canvas>
+		<canvas  class="opacity" width="1800" height="1200" ></canvas>
+	</div>
+</div>
+
+
+
+
+</body>
+
+</html>
