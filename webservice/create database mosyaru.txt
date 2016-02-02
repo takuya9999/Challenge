@@ -1,0 +1,3 @@
+create database mosyaru;
+grant all on mosyaru.* to takuya@localhost identified by '9999';
+

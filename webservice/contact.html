@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="style.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+    <body class="">
+        <div class="container">
+            <form role="form" class="form">
+                <h2>お問い合わせフォーム</h2>
+                <div class="form-group"> 
+                    <label class="control-label" for="formInput169">お名前</label>
+                    <input type="text" class="form-control" id="formInput169" placeholder="お名前">
+                </div>
+                <div class="form-group"> 
+                    <label class="control-label" for="formInput169">Eメールアドレス</label>
+                    <input type="text" class="form-control" id="formInput169" placeholder="Eメールアドレス">
+                </div>                 
+                <p>あなたのメールアドレス:hogehoge@gmail.com</p>
+                <div class="form-group"> 
+                    <label class="control-label" for="formInput129">お問い合わせ内容</label>                     
+
+                    <textarea class="form-control" rows="3" id="formInput129"></textarea>
+                </div>                                  
+                <button type="submit" class="btn btn-default">送信</button>                 
+            </form>
+        </div>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script>
+        $(document).ready(function () {
+            $('[data-toggle="offcanvas"]').click(function () {
+                $('.row-offcanvas').toggleClass('active')
+            });
+        });
+    </script>
+    </body>
+</html>

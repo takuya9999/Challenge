@@ -35,13 +35,16 @@ function insert_profiles($name, $birthday, $type, $tell, $comment){
     $insert_query->bindValue(':type',$type);
     $insert_query->bindValue(':comment',$comment);
     $insert_query->bindValue(':newDate',$date);
-
+    // tryする範囲はピンポイントで
     //SQLを実行
     try{
         $insert_query->execute();
     } catch (PDOException $e) {
         //接続オブジェクトを初期化することでDB接続を切断
         $insert_db=null;
+        // 組み込み関数は基本的にブーリアン値と、パラメーターの二つの値を返すのが一般的。
+        // 今回の処理ではパラメーターのみ返して条件式で処理をしていたが、一般的には
+        // 例えば配列などで('true'=>'hoge','false'=>'hogehoge');という形にするのが好ましい
         return $e->getMessage();
     }
 

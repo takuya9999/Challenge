@@ -1,6 +1,7 @@
 <?php require_once '../common/defineUtil.php'; ?>
 <?php require_once '../common/scriptUtil.php'; ?>
 <?php session_start();//再入力時用 ?>
+<!-- セッションのリセットはこの画面だけでなく、できるならばinsert_resultの画面においても行う方がいい。 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,6 +17,8 @@
 
         生年月日:　
         <select name="year">
+        <!-- valueの値をから文字にする -->
+        <!-- 再入力時のセッションの値を定義関数で呼び出し、その都度判定する -->
             <option value="">----</option>
             <?php
             for($i=1950; $i<=2010; $i++){ ?>

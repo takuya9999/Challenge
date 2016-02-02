@@ -25,12 +25,15 @@ if ($seibetu=="男") {
 
 // echo "hobby";
 // setcookieは文字列じゃないとダメらしい。配列を代入したからなにも入らない状況が起きてた
-
+// $nameさん！だとundifineが出るのに、$profile[0]だと名前が表示される。なぜ？
 setcookie('name',$name);
 setcookie('male',$male);
 setcookie('female',$female);
 setcookie('hobby',$hobby);
+echo "こんにちは！$profile[0]さん！<br>";
+// これだとエラー
 echo "こんにちは！$nameさん！<br>";
+echo "こんにちは！"."$name"."さん！<br>";
 echo 'あなたのプロフィールは、 <br>';
 
 foreach ($profile as $key => $value) {

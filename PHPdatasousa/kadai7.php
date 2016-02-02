@@ -11,7 +11,7 @@
 	if(isset($_COOKIE['name'])) {
 		$name =$_COOKIE['name'];
 	}else{
-	$name = "";
+	$name = "　";
 
 	}
 
@@ -56,7 +56,8 @@
 	</form>
 
 	<?php 
-	echo "$nameです";
+	echo "$name"."です";
+	echo "$nameですだとエラーが出るよ";
 	?>
 </body>
 </html>

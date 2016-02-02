@@ -1,0 +1,198 @@
+ 
+<!DOCTYPE html> 
+<html lang="ja"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>         
+        <script type="text/javascript" src="jcanvas.min.js"></script>         
+        <title>お絵描き</title>         
+        <style type="text/css"> 
+            <!--
+#myCanvas {
+	border:gray solid thick;
+}
+
+-->
+        </style>         
+        <script type="text/javascript">
+<!--
+var line;
+var lines = new Array();
+var points;
+var color;
+//描画中かどうかを表すフラグ
+var isDrawing= false;
+var width; //現在の線幅
+var isBW = false
+
+
+// Lineオブジェクト
+function Line(points, color, width){
+	this.width = width;
+	this.points = points;
+	this.color = color;
+}
+
+// Pointオブジェクト
+
+function Point(x,y){
+	this.x= x;
+	this.y= y;
+}
+
+// すべての線を描画
+
+function drawAll(){
+
+	$("myCanvas").clearCanvas();
+
+	for(i =0; i< lines.length; i++){
+	var line = lines[i];
+	var lineColor =line.color;
+	var lineWidth =line.width;
+	
+		for(j =0; j<line.points.length-1; j++){
+
+			point1=line.points[j];
+			point2=line.points[j+1];
+
+
+			$("#myCanvas").drawLine({
+				strokeStyle: lineColor,
+				strokeWidth: lineWidth,
+				strokeCap:"round",
+
+				x1:point1.x, y1:point1.y,
+				x2:point2.x, y2:point2.y
+
+
+			});
+
+		}
+
+	}
+
+}
+
+
+$(function(){
+	
+	color =$("input[name='color']:checked").val();
+
+	width =$("#width option:selected").val();
+
+
+
+	$("#undoButton").click(function(){
+		if(lines.length >0){
+			lines.pop();
+			drawAll();
+
+		}
+
+	});
+
+
+	$("#bwButton").click(function(){
+		for(i =0; i<lines.length; i++){
+		lines[i].color ="black";
+		}
+		drawAll();
+	});
+
+
+	$("#clearButton").click(function(){
+		lines.length = 0;
+		$("#myCanvas").clearCanvas();
+
+	});
+
+
+	$("input[name='color']").change(function(){
+		color = $(this).val();
+
+
+	});
+
+	$("#width").change(function(){
+		width = $("#width option:selected").val();
+
+
+	})
+
+	$("#myCanvas").mousedown(function(e){
+		isDrawing =true;
+		points= new Array();
+		var offset =$("#myCanvas").offset();
+		var x =e.clientX - offset.left;
+		var y =e.clientY - offset.top;
+		points.push(new Point(x,y));
+
+		line = new Line(points,color,width);
+
+		lines.push(line);
+
+
+		});
+
+	$("#myCanvas").mousemove(function(e){
+		if (!isDrawing) return;
+		
+		var offset =$("#myCanvas").offset();
+		var x =e.clientX - offset.left;
+		var y =e.clientY - offset.top;
+
+		var prevPoint =line.points[line.points.length-1];
+		line.points.push(new Point(x,y));
+
+		$("#myCanvas").drawLine({
+
+			strokeStyle: line.color,
+			strokeWidth: line.width,
+			strokeCap: "round",
+			x1: prevPoint.x,y1:prevPoint.y,
+			x2: x, y2:y
+
+
+		});
+
+	});
+
+	
+	$("#myCanvas").mouseup(function(e){
+		isDrawing = false;
+
+	});
+
+
+});
+
+
+
+-->
+</script>         
+    </head>     
+    <body> 
+        <form autocomplete="off"> 
+            色：
+            <input type="radio" name="color" id="color" value="rgb(0,0,0)" checked>黒
+            <input type="radio" name="color" value="rgb(255,0,0)">赤
+            <input type="radio" name="color" value="yellow">黄
+            <input type="radio" name="color" value="green">緑
+            線幅：
+            <select id="width"> 
+                <option value="1">1</option>                 
+                <option value="2">2</option>                 
+                <option value="3" selected>3</option>                 
+                <option value="4">4</option>                 
+                <option value="5">5</option>                 
+                <option value="6">6</option>                 
+                <option value="7">7</option>                 
+            </select>             
+            <input type="button" id="clearButton" value="すべて消去"> 
+            <input type="button" id="undoButton" value="ひとつ前の線を消去"> 
+            <input type="button" id="bwButton" value="白黒で描画"> 
+        </form>         
+        <canvas id="myCanvas" width="600" height="400"></canvas>         
+    </body>     
+</html>

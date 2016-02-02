@@ -11,7 +11,9 @@
   <body>
     <?php
     //入力画面から「確認画面へ」ボタンを押した場合のみ処理を行う
-    if(!$_POST['mode']=="CONFIRM"){
+    // 条件式は!isset($_POST['mode']) && !$_POST['mode']=="CONFIRM"のように、
+    // valueの中身で判断する処理を書いた方がセキュリティ上良い    
+    if(!isset($_POST['mode']) && !$_POST['mode']=="CONFIRM"){
         echo 'アクセスルートが不正です。もう一度トップページからやり直してください<br>';
     }else{
         
@@ -50,6 +52,7 @@
             <h3>不完全な項目</h3>
             <?php
             //連想配列内の未入力項目を検出して表示
+            // case分の方がいいが、好みの問題でもある
             foreach ($confirm_values as $key => $value){
                 if($value == null){
                     if($key == 'name'){

@@ -1,0 +1,329 @@
+
+
+.calenderhead
+{
+    background-color: #ddff69;
+}
+
+.prof
+{
+    position: fixed;
+}
+
+.profs
+{
+    position: static;
+}
+
+.illust
+{
+    overflow: scroll;
+}
+
+.illust_c
+{
+    width: 330px;
+    margin-left: 10px;
+}
+
+.ekaku
+{
+    padding: 15px;
+    font-size: 10;
+}
+
+.samune
+{
+    width: 50%;
+}
+
+.glyphicon
+{
+    margin-right: 5px;
+}
+
+hr
+{
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.navbar-collapse
+{
+    background-color: #ffab3e;
+}
+
+.top-left
+{
+    background-color: #f7f4f1;
+    height: 880px;
+    position: fixed;
+    width: 230px;
+    padding: 20px 10px;
+}
+
+.mosyaru-left
+{
+    background-color: #444444;
+    height: 880px;
+    position: fixed;
+    width: 230px;
+    padding: 20px 10px;
+}
+
+.formstyle
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.snslogin-button
+{
+    min-width: 100%;
+    margin-top: px;
+    margin-bottom: 10px;
+}
+
+.container
+{
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 70px;
+}
+
+.carousel
+{
+    position: relative;
+}
+
+.canvas
+{
+    height: 800px;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.reference
+{
+    background-repeat: no-repeat;
+    width: 50%;
+    background-color: #4a4949;
+    padding: 10px;
+    display: block;
+}
+
+.testbtn
+{
+    top: 50%;
+    position: absolute;
+    left: 40%;
+    border: 3px solid #EC8B00;
+    z-index: 9;
+}
+
+.header
+{
+    height: 30px;
+    background-color: #515eb7;
+}
+
+.top-right
+{
+    overflow: hidden;
+    margin-left: 230px;
+    position: relative;
+    height: 880px;
+}
+
+.mosharu
+{
+}
+
+.content
+{
+    width: 100%;
+    position: static;
+}
+
+.referenceimg
+{
+    display: block;
+    background-image: url('image/top.png');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    width: 100%;
+    height: 795px;
+    background-position: 50% 50%;
+}
+
+.canvasimg
+{
+    display: block;
+    background-image: url('image/canvas.jpg');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    width: 100%;
+    height: 795px;
+    background-position: 50% 50%;
+}
+
+.refform
+{
+}
+
+.btn-group
+{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 34px;
+}
+
+.btn-default
+{
+}
+
+.tranceper
+{
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.44);
+    height: 100%;
+    z-index: 8;
+}
+
+.pixiv
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    opacity: 0.9;
+}
+
+.form
+{
+    padding: 10px;
+    background-color: #ffe6cc;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control
+{
+    width: 100%;
+}
+
+img
+{
+}
+
+.lefttitle
+{
+    color: #ffffff;
+}
+
+.reftum
+{
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+.osirase
+{
+    position: fixed;
+}
+
+.navbar
+{
+}
+
+.refbtn
+{
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+    vertical-align: baseline;
+}
+
+.playbtn
+{
+}
+
+.glyphicon-play
+{
+    margin-right: 0px;
+}
+
+.glyphicon-stop
+{
+    margin-right: 0px;
+}
+
+.confirmform
+{
+    text-align: center;
+}
+
+.yesbtn
+{
+    margin-right: 10px;
+    width: 80px;
+}
+
+.nobtn
+{
+    width: 80px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.mosyarubtn
+{
+    margin-right: 10px;
+    width: 120px;
+}
+
+.userbtn
+{
+    width: 120px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.refimgbtn
+{
+    width: 100%;
+}
+
+.pixivform
+{
+    color: #fdffff;
+}
+
+.help-block
+{
+    color: #ffffff;
+}
+
+.toolbox
+{
+    margin-top: 20px;
+    height: 420px;
+    background-color: #d9d9d9;
+    padding: 5px;
+}
+
+.fa-pinterest-square
+{
+    color: #d32b2b;
+}
+
+.pbtn
+{
+    text-align: left;
+}
+
